@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1502942988 source:d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\matrix.cpp
+	<cstdlib>
+	<iomanip>
+	<iostream>
+	<cmath>
+
+1502943211 source:d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\main.cpp
+	<cstdlib>
+	<iostream>
+	"matrix.h"
+
+1502943223 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\matrix.h
+

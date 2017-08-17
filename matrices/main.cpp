@@ -8,12 +8,15 @@ using namespace std;
 int main ()
 {
     double * mat, * mat2;
-    int rows = 4;
-    int cols = 4;
+    double * vec;
+    int rows = 5;
+    int cols = 5;
+
+    vec = makeMatrix(4, 1);
     mat = makeMatrix(rows,cols);
     mat2 = makeMatrix(rows,cols);
 
-    double * pMat, * pMat2;
+    double * pMat, * pMat2, *pVec;
 
     pMat = mat;
     pMat2 = mat2;
@@ -24,15 +27,23 @@ int main ()
         *pMat2 = i;
     }
 
+    pVec = vec;
+    *pVec = 8;
+    *(++pVec) = 4;
+    *(++pVec) = 1;
+    *(++pVec) = 0;
+
     double * result;
     result = matMultiplication(mat, mat2, rows, cols);
-    //printMatrix(mat, rows, cols);
-    printMatrix( result, rows, cols );
+    //printMatrix( scalarProduct(mat, 3, rows, cols), rows, cols);
+    //printMatrix( result, rows, cols );
+    printMatrix(vec, 4, 1);
 
 
     free(mat);
     free(mat2);
     free(result);
+    free(vec);
 
     return 0;
 }

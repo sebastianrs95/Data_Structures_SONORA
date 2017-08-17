@@ -31,6 +31,18 @@ double * sumMatrices( double * mat1, double * mat2, int rows, int cols );
 */
 double * subtractMatrices( double * mat1, double * mat2, int rows, int cols );
 
+
+/**
+    \brief Function that takes a matrix and a scalar for scalar product.
+    \param mat A pointer to a double that represents the matrix.
+    \param scalar The scalar (const double).
+    \param rows The number of rows.
+    \param rows The number of columns.
+    \return A pointer to a double that represents the result matrix.
+*/
+double * scalarProduct( double * mat, const double scalar, int rows, int cols );
+
+
 /**
     \brief Function that takes two pointers that represent matrices, and then multiplies them.
             Note: Both of them need to be square matrices.
@@ -50,6 +62,15 @@ double * matMultiplication( double * mat, double * mat2, int rows, int cols );
     \param rows The number of columns.
 */
 void printMatrix( double * mat, int rows, int cols );
+
+
+/**
+    \brief Function that calculates the norm of a vector.
+    \param vec A pointer to a double that represents the vector.
+    \param numEntries The number of entries of the vector.
+    \return The value of the norm of the vector.
+*/
+double normVector( double * vec, const unsigned short numEntries );
 
 
 #endif // MATRIX_H_INCLUDED
