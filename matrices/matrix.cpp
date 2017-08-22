@@ -2,12 +2,21 @@
 #include <iomanip>
 #include <iostream>
 #include <cmath>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include "matrix.h"
 
 using std::cout;
 using std::endl;
 using std::setw;
 using std::right;
 using std::left;
+using std::string;
+using std::vector;
+using std::ifstream;
+using std::istringstream;
 
 /*************************************************************************************************************************/
 
@@ -175,3 +184,78 @@ void printMatrix( double * mat, int rows, int cols )
     }
     cout << " " << char(217);
 }
+
+
+/*************************************************************************************************************************/
+
+double * readMatrixFromFile( const char * filename )
+{
+    ifstream input;
+    string line;
+    input.open(filename);
+
+    vector<vector<string> > ret;    // make a vector of string vectors that will hold the matrix data in strings
+
+    while( getline(input, line) )
+    {
+        ret.push_back( split(line, ' ') );
+    }
+
+    int cols = 0;
+    int rows = 0;
+    bool firstIteration = true;
+    vector<double> matData;     // this will hold the strings converted to doubles
+
+    for( vector<vector<string> >::iterator it = ret.begin() ; it != ret.end() ; ++it )
+    {
+        for( vector<string>::iterator innerIt = it->begin() ; innerIt != it->end() ; innerIt++ )
+        {
+            if( firstIteration ) cols += 1;
+            matData.push_back( string2double(*innerIt) );
+        }
+        rows += 1;
+        firstIteration = false;
+    }
+
+    //cout << "Number of rows: " << rows << endl << "Number of columns: " << cols << endl;
+
+    double * newMat, * pNewMat;
+    newMat = makeMatrix(rows, cols);
+
+    pNewMat = newMat;
+    cout << "inside func" << sizeof(matData) << endl;
+    for( vector<double>::iterator it = matData.begin() ; it != matData.end() ; ++it, ++pNewMat )
+    {
+        *pNewMat = *it;
+        cout << "inside loop" << endl;
+        cout << *it << endl;
+    }
+
+    input.close();
+
+    return newMat;
+}
+
+
+/*************************************************************************************************************************/
+
+double string2double( string str )
+{
+    double temp = atof(str.c_str());
+    return temp;
+}
+
+
+/*************************************************************************************************************************/
+
+vector<string> split( string str, char sep )
+{
+    vector<string> ret;
+
+    istringstream stm(str);
+    string token;
+    while( getline(stm, token, sep)) ret.push_back(token);
+
+    return ret;
+}
+

@@ -12,3 +12,23 @@
 
 1502943223 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\matrix.h
 
+1503383694 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\main.cpp
+	<cstdlib>
+	<iostream>
+	"matrix.h"
+
+1503383669 d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.h
+	<string>
+	<vector>
+
+1503383985 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.cpp
+	<cstdlib>
+	<iomanip>
+	<iostream>
+	<cmath>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+	"matrix.h"
+

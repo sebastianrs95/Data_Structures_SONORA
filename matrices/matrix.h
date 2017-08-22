@@ -1,7 +1,10 @@
 #ifndef MATRIX_H_INCLUDED
 #define MATRIX_H_INCLUDED
 
-
+#include <string>
+#include <vector>
+using std::string;
+using std::vector;
 /**
     \brief Function that assigns memory to a pointer (double) that will further represent a matrix.
     \param rows The number of rows.
@@ -71,6 +74,11 @@ void printMatrix( double * mat, int rows, int cols );
     \return The value of the norm of the vector.
 */
 double normVector( double * vec, const unsigned short numEntries );
+
+
+double * readMatrixFromFile( const char * filename );
+vector<string> split( string str, char sep );
+double string2double( string str );
 
 
 #endif // MATRIX_H_INCLUDED

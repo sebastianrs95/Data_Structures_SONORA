@@ -39,7 +39,12 @@ int main ()
     //printMatrix( result, rows, cols );
     printMatrix(vec, 4, 1);
 
+    double * inMatrix = readMatrixFromFile("ex2.txt");
 
+    cout << endl << "inMatrix" << endl;
+    printMatrix(inMatrix, 4, 6);
+
+    free(inMatrix);
     free(mat);
     free(mat2);
     free(result);
