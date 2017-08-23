@@ -16,6 +16,7 @@ using std::left;
 using std::string;
 using std::vector;
 using std::ifstream;
+using std::ofstream;
 using std::istringstream;
 
 /*************************************************************************************************************************/
@@ -217,18 +218,14 @@ double * readMatrixFromFile( const char * filename )
         firstIteration = false;
     }
 
-    //cout << "Number of rows: " << rows << endl << "Number of columns: " << cols << endl;
 
     double * newMat, * pNewMat;
     newMat = makeMatrix(rows, cols);
 
     pNewMat = newMat;
-    cout << "inside func" << sizeof(matData) << endl;
     for( vector<double>::iterator it = matData.begin() ; it != matData.end() ; ++it, ++pNewMat )
     {
         *pNewMat = *it;
-        cout << "inside loop" << endl;
-        cout << *it << endl;
     }
 
     input.close();
@@ -236,6 +233,25 @@ double * readMatrixFromFile( const char * filename )
     return newMat;
 }
 
+
+/*************************************************************************************************************************/
+
+void writeMatrixToFile( double * mat, int rows, int cols, const char * filename )
+{
+    ofstream outfile;
+    outfile.open(filename);
+
+    double * pMat = mat;
+    for( int i = 0 ; i < rows ; ++i, ++pMat )
+    {
+        for( int j = 0 ; j < cols ; ++j )
+        {
+            outfile << *pMat << ' ';
+        }
+        outfile << '\n';
+    }
+    outfile.close();
+}
 
 /*************************************************************************************************************************/
 

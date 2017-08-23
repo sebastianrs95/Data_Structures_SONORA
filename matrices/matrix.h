@@ -5,6 +5,8 @@
 #include <vector>
 using std::string;
 using std::vector;
+
+
 /**
     \brief Function that assigns memory to a pointer (double) that will further represent a matrix.
     \param rows The number of rows.
@@ -76,8 +78,31 @@ void printMatrix( double * mat, int rows, int cols );
 double normVector( double * vec, const unsigned short numEntries );
 
 
+/**
+    \brief Function that reads matrix data from a file, and constructs one with it.
+    \param filename The location of the file, needs to have extension of it too.
+    \return A pointer to a double that represents the matrix read.
+*/
 double * readMatrixFromFile( const char * filename );
+
+
+void writeMatrixToFile( double * mat, int rows, int cols, const char * filename );
+
+
+/**
+    \brief A function that splits a string and stores the tokens inside a string vector.
+    \param str The string to be split.
+    \param sep The separating character, or stopword.
+    \return A string vector with the tokens found.
+*/
 vector<string> split( string str, char sep );
+
+
+/**
+    \brief A function that converts a string to a double.
+    \param str The string to be converted to a double.
+    \return The double retrieved.
+*/
 double string2double( string str );
 
 

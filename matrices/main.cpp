@@ -44,6 +44,8 @@ int main ()
     cout << endl << "inMatrix" << endl;
     printMatrix(inMatrix, 4, 6);
 
+    writeMatrixToFile(result, rows, cols, "result.txt");
+
     free(inMatrix);
     free(mat);
     free(mat2);
