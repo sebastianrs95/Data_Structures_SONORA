@@ -86,6 +86,13 @@ double normVector( double * vec, const unsigned short numEntries );
 double * readMatrixFromFile( const char * filename );
 
 
+/**
+    \brief Function that writes a matrix to a .txt file.
+    \param mat A pointer to a double that represents the matrix.
+    \param rows The number of rows in the matrix.
+    \param cols The number of columns in the matrix.
+    \param filename The name of the file to be overwritten.
+*/
 void writeMatrixToFile( double * mat, int rows, int cols, const char * filename );
 
 
