@@ -54,10 +54,22 @@ double * scalarProduct( double * mat, const double scalar, int rows, int cols );
     \param mat A pointer to a double that represents the first matrix.
     \param mat2 A pointer to a double that represents the second matrix.
     \param rows The number of rows.
-    \param rows The number of columns.
+    \param cols The number of columns.
     \return A pointer to a double that represents the result matrix.
 */
-double * matMultiplication( double * mat, double * mat2, int rows, int cols );
+double * squareMatMult( double * mat, double * mat2, int rows, int cols );
+
+
+/**
+    \brief Function that takes two pointers that represent matrices, and then multiplies them.
+    \param mat A pointer to a double that represents the first matrix.
+    \param mat2 A pointer to a double that represents the second matrix.
+    \param m The number of rows.
+    \param n The number of columns.
+    \param k The number of columns of the second matrix.
+    \return A pointer to a double that represents the result matrix.
+*/
+double * matMultiplication( double * mat, double * mat2, int m, int n, int k );
 
 
 /**
@@ -83,7 +95,7 @@ double normVector( double * vec, const unsigned short numEntries );
     \param filename The location of the file, needs to have extension of it too.
     \return A pointer to a double that represents the matrix read.
 */
-double * readMatrixFromFile( const char * filename );
+double * readMatrixFromFile( const char * filename, int & rows, int & cols );
 
 
 /**

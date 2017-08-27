@@ -108,7 +108,7 @@ double * scalarProduct( double * mat, const double scalar, int rows, int cols )
 
 /*************************************************************************************************************************/
 
-double * matMultiplication( double * mat, double * mat2, int rows, int cols )
+double * squareMatMult( double * mat, double * mat2, int rows, int cols )
 {
     double * pMat, * pMat2, * result, * pResult;
     result = (double*) malloc(sizeof(double)*rows*cols);
@@ -137,6 +137,38 @@ double * matMultiplication( double * mat, double * mat2, int rows, int cols )
         pMat2 = mat2;   // restart the pointer
     }
 
+    return result;
+}
+
+
+/*************************************************************************************************************************/
+
+double * matMultiplication( double * mat, double * mat2, int m, int n, int k )
+{
+
+    double * result, *pMat, *pMat2, *pResult;
+    result = (double*) malloc( sizeof(double)*m*k );
+
+    pMat = mat;
+    pMat2 = mat2;
+
+    double sum = 0.0;
+
+    for( int i = 0 ; i < k ; ++i )
+    {
+        pResult = result + i;
+        for( int j = 0 ; j < m ; ++j, pResult += k )
+        {
+            sum = 0.0;
+            pMat = mat + j*n;   // move to the next row for each iteration
+            pMat2 = mat2 + i;
+
+            for( int l = 0 ; l < n ; ++l, ++pMat, pMat2 += k )
+                sum += *(pMat) * (*pMat2);
+
+            *pResult = sum;
+        }
+    }
     return result;
 }
 
@@ -189,7 +221,7 @@ void printMatrix( double * mat, int rows, int cols )
 
 /*************************************************************************************************************************/
 
-double * readMatrixFromFile( const char * filename )
+double * readMatrixFromFile( const char * filename, int & rows, int & cols )
 {
     ifstream input;
     string line;
@@ -202,8 +234,9 @@ double * readMatrixFromFile( const char * filename )
         ret.push_back( split(line, ' ') );
     }
 
-    int cols = 0;
-    int rows = 0;
+    rows = 0;
+    cols = 0;
+
     bool firstIteration = true;
     vector<double> matData;     // this will hold the strings converted to doubles
 
