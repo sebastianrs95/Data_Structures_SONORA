@@ -91,6 +91,34 @@ double normVector( double * vec, const unsigned short numEntries );
 
 
 /**
+    \brief Takes two rows from a matrix (which are two pointers to double) and interchanges its values.
+    \param firstRow A pointer to a double that holds the first row to be interchanged.
+    \param secondRow A pointer to a double that holds the second row to be interchanged.
+    \param m An integer that holds the number of rows of the matrix.
+    \param n An integer that holds the number of columns of the matrix.
+*/
+void changeRows( double * firstRow, double * secondRow, int m, int n );
+
+
+/**
+    \brief Function that aids the reduce function, for solving LES.
+    \param row A pointer to a double that holds the starting value of the row to be modified.
+    \param n An integer that represents the dimension of the square matrix.
+    \return The value of the multiplier that will modify the bVector too.
+*/
+double makePivotOne( double * row, int n );
+
+
+/**
+    \brief Function that reduces a column to zeros, except the pivot.
+    \param row A pointer that holds the first row to be added.
+    \param row2 A pointer that holds the second row, which will be modified.
+    \param n An integer that holds the dimension of the matrix.
+*/
+double reduceColumn( double * row, double * row2, int n );
+
+
+/**
     \brief Function that reads matrix data from a file, and constructs one with it.
     \param filename The location of the file, needs to have extension of it too.
     \return A pointer to a double that represents the matrix read.

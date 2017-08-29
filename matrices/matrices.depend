@@ -32,3 +32,25 @@
 	<sstream>
 	"matrix.h"
 
+1504040353 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/main.cpp
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<ctime>
+	"matrix.h"
+
+1504040323 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.h
+	<string>
+	<vector>
+
+1504039078 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.cpp
+	<cstdlib>
+	<iomanip>
+	<iostream>
+	<cmath>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+	"matrix.h"
+

@@ -269,6 +269,62 @@ double * readMatrixFromFile( const char * filename, int & rows, int & cols )
 
 /*************************************************************************************************************************/
 
+void changeRows( double * firstRow, double * secondRow, int m, int n )
+{
+    double *pFirst, *pSecond, aux;
+
+    pFirst = firstRow;
+    pSecond = secondRow;
+
+    for( int i = 0 ; i < n ; ++i, ++pFirst, ++pSecond )
+    {
+        aux = *pFirst;
+        *pFirst = *pSecond;
+        *pSecond = aux;
+    }
+}
+
+
+/*************************************************************************************************************************/
+
+double makePivotOne( double * row, int n )
+{
+    double *pRow = row;
+    double value = 1.0 / (*pRow);
+    *pRow = 1;
+
+    ++pRow;
+    for( int i = 1;  i < n ; ++i, ++pRow )
+    {
+        *pRow = value * (*pRow);
+    }
+
+    return value;
+}
+
+
+/*************************************************************************************************************************/
+
+double reduceColumn( double * row, double * row2, int n )
+{
+    double *pRow, *pRow2;
+    pRow = row;
+
+    double value;
+    value = -(*pRow2);
+    *pRow2 = 0;
+
+    ++pRow, ++pRow2;
+    for( int i = 1 ; i < n ; ++i, ++pRow, ++pRow2 )
+    {
+        *pRow2 = *pRow2 + value * (*pRow);
+    }
+
+    return value;
+}
+
+/*************************************************************************************************************************/
+
 void writeMatrixToFile( double * mat, int rows, int cols, const char * filename )
 {
     ofstream outfile;

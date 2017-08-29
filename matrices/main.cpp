@@ -12,6 +12,7 @@ void printSubMenu(int option);
 
 int main ()
 {
+    /*
     cout << endl << endl << "\t\t\tMATRIX OPERATIONS" << endl << endl << endl;
     printMenu();
 
@@ -20,6 +21,30 @@ int main ()
     cin >> option;
 
     printSubMenu(option);
+    */
+    double * mat;
+    int m = 5, n = 5;
+    mat = (double*) malloc(sizeof(double)*m*n);
+
+    double *pMat = mat;
+    for( int i = 0 ; i < m ; ++i )
+    {
+        for( int j = 0 ; j < n ; ++j )
+        {
+            *pMat = i;
+            ++pMat;
+        }
+    }
+
+    printMatrix(mat, m, n);
+    changeRows(mat, mat + 4*n, m, n);
+    cout << endl << endl;
+    *mat = 16;
+    makePivotOne(mat, n);
+    reduceColumn(mat, mat + n, n);
+    printMatrix(mat, m, n);
+
+
 
     return 0;
 }
