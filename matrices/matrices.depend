@@ -34,18 +34,30 @@
 	<sstream>
 	"matrix.h"
 
+<<<<<<< HEAD
 1504212165 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/main.cpp
+=======
+1504040353 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/main.cpp
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 	<cstdlib>
 	<iostream>
 	<stdio.h>
 	<ctime>
 	"matrix.h"
 
+<<<<<<< HEAD
 1504210990 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.h
 	<string>
 	<vector>
 
 1504212122 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.cpp
+=======
+1504040323 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.h
+	<string>
+	<vector>
+
+1504039078 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.cpp
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 	<cstdlib>
 	<iomanip>
 	<iostream>

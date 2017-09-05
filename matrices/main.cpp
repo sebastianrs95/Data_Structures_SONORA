@@ -23,6 +23,7 @@ int main ()
     printSubMenu(option);
     */
     double * mat;
+<<<<<<< HEAD
     int m, n;
     mat = readMatrixFromFile("ref.txt", m, n);
 
@@ -35,6 +36,27 @@ int main ()
 
     reduce(mat, mat, n);
     cout << endl << endl;
+=======
+    int m = 5, n = 5;
+    mat = (double*) malloc(sizeof(double)*m*n);
+
+    double *pMat = mat;
+    for( int i = 0 ; i < m ; ++i )
+    {
+        for( int j = 0 ; j < n ; ++j )
+        {
+            *pMat = i;
+            ++pMat;
+        }
+    }
+
+    printMatrix(mat, m, n);
+    changeRows(mat, mat + 4*n, m, n);
+    cout << endl << endl;
+    *mat = 16;
+    makePivotOne(mat, n);
+    reduceColumn(mat, mat + n, n);
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
     printMatrix(mat, m, n);
 
 

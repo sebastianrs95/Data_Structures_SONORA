@@ -287,6 +287,7 @@ void changeRows( double * firstRow, double * secondRow, int m, int n )
 
 /*************************************************************************************************************************/
 
+<<<<<<< HEAD
 void changeRowsBVec( double * bVec, int position )
 {
     double aux1 = *bVec, aux2;
@@ -301,6 +302,8 @@ void changeRowsBVec( double * bVec, int position )
 
 /*************************************************************************************************************************/
 
+=======
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 double makePivotOne( double * row, int n )
 {
     double *pRow = row;
@@ -323,6 +326,7 @@ double reduceColumn( double * row, double * row2, int n )
 {
     double *pRow, *pRow2;
     pRow = row;
+<<<<<<< HEAD
     pRow2 = row2;
 
     double value;
@@ -334,6 +338,17 @@ double reduceColumn( double * row, double * row2, int n )
     for( int i = 0 ; i < n ; ++i, ++pRow, ++pRow2 )
     {
         *pRow2 = (*pRow2) + value * (*pRow);
+=======
+
+    double value;
+    value = -(*pRow2);
+    *pRow2 = 0;
+
+    ++pRow, ++pRow2;
+    for( int i = 1 ; i < n ; ++i, ++pRow, ++pRow2 )
+    {
+        *pRow2 = *pRow2 + value * (*pRow);
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
     }
 
     return value;
@@ -341,6 +356,7 @@ double reduceColumn( double * row, double * row2, int n )
 
 /*************************************************************************************************************************/
 
+<<<<<<< HEAD
 void modifyBVec( double * bVec, double value, int position )
 {
     double *pbVec = bVec;
@@ -414,6 +430,8 @@ void reduce( double * mat, double * bVec, int n )
 /*************************************************************************************************************************/
 
 
+=======
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 void writeMatrixToFile( double * mat, int rows, int cols, const char * filename )
 {
     ofstream outfile;

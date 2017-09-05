@@ -101,6 +101,7 @@ void changeRows( double * firstRow, double * secondRow, int m, int n );
 
 
 /**
+<<<<<<< HEAD
     \brief Function that gets the greatest absolute value of a column of pivots.
     \param col A pointer to a double that holds the location of the column.
     \param numIt The number of iterations, i.e. the elements of the column to be worked upon.
@@ -123,11 +124,17 @@ void modifyBVec( double * bVec, double value, int position );
     \brief Function that aids the reduce function, for solving LES.
     \param row A pointer to a double that holds the starting value of the row to be modified.
     \param n An integer that represents the length of the row to be modified.
+=======
+    \brief Function that aids the reduce function, for solving LES.
+    \param row A pointer to a double that holds the starting value of the row to be modified.
+    \param n An integer that represents the dimension of the square matrix.
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
     \return The value of the multiplier that will modify the bVector too.
 */
 double makePivotOne( double * row, int n );
 
 
+<<<<<<< HEAD
 
 /**
     \brief Function that modifies the B vector provided for the LES.
@@ -146,6 +153,8 @@ void reduceBVec( double * bVec, double value, int position );
 */
 void reduce( double * mat, double * bVec, int n );
 
+=======
+>>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 /**
     \brief Function that reduces a column to zeros, except the pivot.
     \param row A pointer that holds the first row to be added.
