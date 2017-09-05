@@ -12,6 +12,7 @@ void printSubMenu(int option);
 
 int main ()
 {
+    /*
     cout << endl << endl << "\t\t\tMATRIX OPERATIONS" << endl << endl << endl;
     printMenu();
 
@@ -20,6 +21,23 @@ int main ()
     cin >> option;
 
     printSubMenu(option);
+    */
+    double * mat;
+    int m, n;
+    mat = readMatrixFromFile("ref.txt", m, n);
+
+
+    //changeRows(mat, mat+2*n, n, n);
+
+    printMatrix(mat, m, n);
+
+    cout << endl << endl;
+
+    reduce(mat, mat, n);
+    cout << endl << endl;
+    printMatrix(mat, m, n);
+
+
 
     return 0;
 }

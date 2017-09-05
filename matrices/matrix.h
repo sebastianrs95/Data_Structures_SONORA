@@ -91,6 +91,71 @@ double normVector( double * vec, const unsigned short numEntries );
 
 
 /**
+    \brief Takes two rows from a matrix (which are two pointers to double) and interchanges its values.
+    \param firstRow A pointer to a double that holds the first row to be interchanged.
+    \param secondRow A pointer to a double that holds the second row to be interchanged.
+    \param m An integer that holds the number of rows of the matrix.
+    \param n An integer that holds the number of columns of the matrix.
+*/
+void changeRows( double * firstRow, double * secondRow, int m, int n );
+
+
+/**
+    \brief Function that gets the greatest absolute value of a column of pivots.
+    \param col A pointer to a double that holds the location of the column.
+    \param numIt The number of iterations, i.e. the elements of the column to be worked upon.
+    \param n The dimension of the matrix.
+    \return An integer that holds the number of the row with the greatest index.
+*/
+int partialPivot( double * col, int numIt, int n );
+
+
+/**
+    \brief Function that modifies the B vector provided for the LES.
+    \param bVec A pointer to a double that represents the bVector.
+    \param value The value of the multiplier.
+    \param position The entry to be modified.
+*/
+void modifyBVec( double * bVec, double value, int position );
+
+
+/**
+    \brief Function that aids the reduce function, for solving LES.
+    \param row A pointer to a double that holds the starting value of the row to be modified.
+    \param n An integer that represents the length of the row to be modified.
+    \return The value of the multiplier that will modify the bVector too.
+*/
+double makePivotOne( double * row, int n );
+
+
+
+/**
+    \brief Function that modifies the B vector provided for the LES.
+    \param bVec A pointer to a double that represents the bVector.
+    \param value The value of the addition.
+    \param position The entry to be modified.
+*/
+void reduceBVec( double * bVec, double value, int position );
+
+
+/**
+    \brief Function that reduces a matrix to reduced row echelon form. It only works with squared matrices.
+    \param mat A pointer to a double that represents the matrix.
+    \param bVec A pointer to a double that holds the bVector needed.
+    \param n, the dimension of the square matrix.
+*/
+void reduce( double * mat, double * bVec, int n );
+
+/**
+    \brief Function that reduces a column to zeros, except the pivot.
+    \param row A pointer that holds the first row to be added.
+    \param row2 A pointer that holds the second row, which will be modified.
+    \param n An integer that holds the dimension of the matrix.
+*/
+double reduceColumn( double * row, double * row2, int n );
+
+
+/**
     \brief Function that reads matrix data from a file, and constructs one with it.
     \param filename The location of the file, needs to have extension of it too.
     \return A pointer to a double that represents the matrix read.

@@ -269,6 +269,151 @@ double * readMatrixFromFile( const char * filename, int & rows, int & cols )
 
 /*************************************************************************************************************************/
 
+void changeRows( double * firstRow, double * secondRow, int m, int n )
+{
+    double *pFirst, *pSecond, aux;
+
+    pFirst = firstRow;
+    pSecond = secondRow;
+
+    for( int i = 0 ; i < n ; ++i, ++pFirst, ++pSecond )
+    {
+        aux = *pFirst;
+        *pFirst = *pSecond;
+        *pSecond = aux;
+    }
+}
+
+
+/*************************************************************************************************************************/
+
+void changeRowsBVec( double * bVec, int position )
+{
+    double aux1 = *bVec, aux2;
+
+    double * pbVec = bVec;
+    for( int i = 0 ; i < position, ++pbVec );
+
+    aux2 = *pbVec;
+    *pbVec = aux;
+    *bVec = aux2;
+}
+
+/*************************************************************************************************************************/
+
+double makePivotOne( double * row, int n )
+{
+    double *pRow = row;
+    double value = 1.0 / (*pRow);
+    *pRow = 1;
+
+    ++pRow;
+    for( int i = 1;  i < n ; ++i, ++pRow )
+    {
+        *pRow = value * (*pRow);
+    }
+
+    return value;
+}
+
+
+/*************************************************************************************************************************/
+
+double reduceColumn( double * row, double * row2, int n )
+{
+    double *pRow, *pRow2;
+    pRow = row;
+    pRow2 = row2;
+
+    double value;
+    value = -(*pRow2);
+    //*pRow2 = 0;
+
+    //++pRow;
+    //++pRow2;
+    for( int i = 0 ; i < n ; ++i, ++pRow, ++pRow2 )
+    {
+        *pRow2 = (*pRow2) + value * (*pRow);
+    }
+
+    return value;
+}
+
+/*************************************************************************************************************************/
+
+void modifyBVec( double * bVec, double value, int position )
+{
+    double *pbVec = bVec;
+    pbVec += position;
+    *pbVec *= value;
+}
+
+
+/*************************************************************************************************************************/
+
+int partialPivot( double * col, int numIt, int n )
+{
+    double * pCol, greatest;
+    pCol = col;
+
+    int greatestIndex = 0;
+    greatest = 0;
+    for( int i = 0 ; i < numIt ; ++i, pCol += n )
+    {
+        if( greatest < abs(*pCol) )
+        {
+            greatest = *pCol;
+            greatestIndex = i;
+        }
+    }
+
+    return greatestIndex + (n-numIt);
+}
+
+
+/*************************************************************************************************************************/
+
+void reduceBVec( double * bVec, double value, int position )
+{
+    double *pbVec = bVec;
+    pbVec += position;
+    *pbVec += value;
+}
+
+
+/*************************************************************************************************************************/
+void reduce( double * mat, double * bVec, int n )
+{
+    double *pRow, *pRow2, * pbVec, value;
+    pRow = mat;
+    pbVec = bVec;
+
+    int pivotIndex;
+    for( int i = 0 ; i < n ; ++i, pRow += n+1 )
+    {
+        pivotIndex = partialPivot(pRow, n-i, n);
+        changeRows(mat + i*n, mat + pivotIndex*n, n, n);
+
+        value = makePivotOne(pRow, n-i);
+
+        cout << endl << endl << "After pivot in i = " << i << endl;
+        printMatrix(mat, n, n);
+        modifyBVec(pbVec, value, i);
+        pRow2 = pRow + n;
+        for( int j = 0 ; j < n - (i+1) ; ++j, pRow2 += n )
+        {
+            value = reduceColumn(pRow, pRow2, n-i);
+            reduceBVec(bVec, value, )
+            cout << endl << endl << "After reduce in i = " << i << " and j = " << j << endl;
+            printMatrix(mat, n, n);
+        }
+
+    }
+}
+
+/*************************************************************************************************************************/
+
+
 void writeMatrixToFile( double * mat, int rows, int cols, const char * filename )
 {
     ofstream outfile;
