@@ -12,18 +12,18 @@
 
 1502943223 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\matrix.h
 
-1504570972 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\main.cpp
+1504768224 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\main.cpp
 	<cstdlib>
 	<iostream>
 	<stdio.h>
 	<ctime>
 	"matrix.h"
 
-1504236190 d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.h
+1504659498 d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.h
 	<string>
 	<vector>
 
-1503792885 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.cpp
+1504769278 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.cpp
 	<cstdlib>
 	<iomanip>
 	<iostream>
@@ -34,30 +34,18 @@
 	<sstream>
 	"matrix.h"
 
-<<<<<<< HEAD
 1504212165 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/main.cpp
-=======
-1504040353 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/main.cpp
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 	<cstdlib>
 	<iostream>
 	<stdio.h>
 	<ctime>
 	"matrix.h"
 
-<<<<<<< HEAD
 1504210990 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.h
 	<string>
 	<vector>
 
 1504212122 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.cpp
-=======
-1504040323 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.h
-	<string>
-	<vector>
-
-1504039078 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/matrices/matrix.cpp
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 	<cstdlib>
 	<iomanip>
 	<iostream>

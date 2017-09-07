@@ -22,42 +22,27 @@ int main ()
 
     printSubMenu(option);
     */
-    double * mat;
-<<<<<<< HEAD
-    int m, n;
-    mat = readMatrixFromFile("ref.txt", m, n);
+    double * mat, * bVec;
+    int m, n, mVec, nVec;
+    mat = readMatrixFromFile("sel.txt", m, n);
+    bVec = readMatrixFromFile("selBVec.txt", mVec, nVec);
 
 
     //changeRows(mat, mat+2*n, n, n);
 
     printMatrix(mat, m, n);
+    cout << endl;
+    printMatrix(bVec, nVec, mVec);
+
 
     cout << endl << endl;
 
-    reduce(mat, mat, n);
+    reduce(mat, bVec, n);
     cout << endl << endl;
-=======
-    int m = 5, n = 5;
-    mat = (double*) malloc(sizeof(double)*m*n);
-
-    double *pMat = mat;
-    for( int i = 0 ; i < m ; ++i )
-    {
-        for( int j = 0 ; j < n ; ++j )
-        {
-            *pMat = i;
-            ++pMat;
-        }
-    }
-
     printMatrix(mat, m, n);
-    changeRows(mat, mat + 4*n, m, n);
-    cout << endl << endl;
-    *mat = 16;
-    makePivotOne(mat, n);
-    reduceColumn(mat, mat + n, n);
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
-    printMatrix(mat, m, n);
+    cout << endl;
+    printMatrix(bVec, nVec, mVec);
+
 
 
 

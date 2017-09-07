@@ -287,23 +287,17 @@ void changeRows( double * firstRow, double * secondRow, int m, int n )
 
 /*************************************************************************************************************************/
 
-<<<<<<< HEAD
 void changeRowsBVec( double * bVec, int position )
 {
-    double aux1 = *bVec, aux2;
-
-    double * pbVec = bVec;
-    for( int i = 0 ; i < position, ++pbVec );
-
-    aux2 = *pbVec;
-    *pbVec = aux;
-    *bVec = aux2;
+    double aux = *bVec;
+    cout << "position is " << position << endl;
+    *bVec = *(bVec + position);
+    *(bVec + position) = aux;
 }
+
 
 /*************************************************************************************************************************/
 
-=======
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 double makePivotOne( double * row, int n )
 {
     double *pRow = row;
@@ -326,7 +320,6 @@ double reduceColumn( double * row, double * row2, int n )
 {
     double *pRow, *pRow2;
     pRow = row;
-<<<<<<< HEAD
     pRow2 = row2;
 
     double value;
@@ -338,17 +331,6 @@ double reduceColumn( double * row, double * row2, int n )
     for( int i = 0 ; i < n ; ++i, ++pRow, ++pRow2 )
     {
         *pRow2 = (*pRow2) + value * (*pRow);
-=======
-
-    double value;
-    value = -(*pRow2);
-    *pRow2 = 0;
-
-    ++pRow, ++pRow2;
-    for( int i = 1 ; i < n ; ++i, ++pRow, ++pRow2 )
-    {
-        *pRow2 = *pRow2 + value * (*pRow);
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
     }
 
     return value;
@@ -356,12 +338,12 @@ double reduceColumn( double * row, double * row2, int n )
 
 /*************************************************************************************************************************/
 
-<<<<<<< HEAD
 void modifyBVec( double * bVec, double value, int position )
 {
     double *pbVec = bVec;
     pbVec += position;
-    *pbVec *= value;
+    *pbVec = *pbVec * value;
+    cout << "value is: " << value << endl;
 }
 
 
@@ -389,18 +371,18 @@ int partialPivot( double * col, int numIt, int n )
 
 /*************************************************************************************************************************/
 
-void reduceBVec( double * bVec, double value, int position )
+void reduceBVec( double * bVec, double value, int position, int numIteration )
 {
     double *pbVec = bVec;
     pbVec += position;
-    *pbVec += value;
+    *pbVec += *(bVec + numIteration) * value;
 }
 
 
 /*************************************************************************************************************************/
 void reduce( double * mat, double * bVec, int n )
 {
-    double *pRow, *pRow2, * pbVec, value;
+    double *pRow, *pRow2, *pbVec, value;
     pRow = mat;
     pbVec = bVec;
 
@@ -408,20 +390,27 @@ void reduce( double * mat, double * bVec, int n )
     for( int i = 0 ; i < n ; ++i, pRow += n+1 )
     {
         pivotIndex = partialPivot(pRow, n-i, n);
-        changeRows(mat + i*n, mat + pivotIndex*n, n, n);
-
+        changeRows(mat + i*n, mat + pivotIndex*n, n, n);    // send the beginning of each row
+        changeRowsBVec( pbVec, pivotIndex-i );  // minus the i iteration
         value = makePivotOne(pRow, n-i);
+        modifyBVec(pbVec, value, i);
 
         cout << endl << endl << "After pivot in i = " << i << endl;
         printMatrix(mat, n, n);
-        modifyBVec(pbVec, value, i);
+        cout << endl;
+        printMatrix(bVec, n, 1);
+
+
         pRow2 = pRow + n;
+
         for( int j = 0 ; j < n - (i+1) ; ++j, pRow2 += n )
         {
             value = reduceColumn(pRow, pRow2, n-i);
-            reduceBVec(bVec, value, )
+            reduceBVec(pbVec, value, j+i+1, i);    // the j + i + 1 works...
             cout << endl << endl << "After reduce in i = " << i << " and j = " << j << endl;
             printMatrix(mat, n, n);
+            cout << endl;
+            printMatrix(bVec, n, 1);
         }
 
     }
@@ -430,8 +419,6 @@ void reduce( double * mat, double * bVec, int n )
 /*************************************************************************************************************************/
 
 
-=======
->>>>>>> 12542236c5b7cacec0e701a8e1c15ab8699e21bf
 void writeMatrixToFile( double * mat, int rows, int cols, const char * filename )
 {
     ofstream outfile;
