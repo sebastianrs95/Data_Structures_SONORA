@@ -1,11 +1,11 @@
 #ifndef NODE_H_INCLUDED
 #define NODE_H_INCLUDED
 
-
+template <typename T>
 struct Node
 {
     Node * next;
-    int value;
+    T value;
 };
 
 #endif // NODE_H_INCLUDED

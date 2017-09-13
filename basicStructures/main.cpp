@@ -1,23 +1,25 @@
 #include <iostream>
 #include "Stack.h"
 #include "Queue.h"
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    Stack q;
-    Queue s;
+    Stack<char*> s;
+    Queue<char*> q;
     int numElements = 10;
+
+    string str;
+
+    str.append("hey");
     for( int i = 0 ; i < numElements ; ++i )
     {
-        q.push(i);
+        q.push("are you a guy?");
+        //q.push("a guy?");
     }
 
-    q.push(100);
-    q.push(10000);
-    q.push(1);
-    q.push(1000000);
 
     q.print();
 

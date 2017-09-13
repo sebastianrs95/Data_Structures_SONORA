@@ -11,17 +11,22 @@
 
 1505011455 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\basicstructures\stack.h
 
-1505188676 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\main.cpp
+1505244528 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\main.cpp
 	<iostream>
 	"Stack.h"
 	"Queue.h"
+	<string>
 
-1505185220 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\stack.h
-	"Node.h"
+1505233866 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\stack.h
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<string>
+	<sstream>
 
 1505185217 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\node.h
 
-1505189002 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\src\queue.cpp
+1505229801 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\src\queue.cpp
 	"Queue.h"
 	<cstdlib>
 	<iostream>
@@ -29,10 +34,14 @@
 	<string>
 	<sstream>
 
-1505185543 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\queue.h
-	"Node.h"
+1505234317 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\queue.h
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<string>
+	<sstream>
 
-1505182709 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\node.h
+1505233155 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\node.h
 
 1505183664 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\src\stack.cpp
 	"Stack.h"
@@ -40,6 +49,10 @@
 	<iostream>
 	<iomanip>
 
-1505182677 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\stack.h
-	"Node.h"
+1505244340 d:\lotta stuff\escuela\git-repos\data_structures_sonora\basicstructures\include\stack.h
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<string>
+	<sstream>
 

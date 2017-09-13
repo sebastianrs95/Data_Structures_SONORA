@@ -34,11 +34,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Queue.cpp" />
-		<Unit filename="Stack.cpp" />
 		<Unit filename="include/Queue.h" />
+		<Unit filename="include/Stack.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Queue.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
