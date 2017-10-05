@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1507168417 source:d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\main.cpp
+	<iostream>
+	"Client.h"
+	"Cashier.h"
+	"Queue.h"
+	"Stack.h"
+	"Bank.h"
+	<ctime>
+	<cstdlib>
+
+1507162295 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\client.h
+	<string>
+	<ctime>
+	<cstdlib>
+	<iostream>
+
+1507163232 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\cashier.h
+	<string>
+	<ctime>
+	<cstdlib>
+
+1507167600 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\queue.h
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<string>
+	<sstream>
+
+1505244340 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\stack.h
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	<string>
+	<sstream>
+
+1507168460 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\bank\bank.h
+	<vector>
+

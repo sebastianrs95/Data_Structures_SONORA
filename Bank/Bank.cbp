@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="matrices" />
+		<Option title="Bank" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/matrices" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Bank" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/matrices" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Bank" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,11 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="linear.cpp" />
-		<Unit filename="linear.h" />
+		<Unit filename="Bank.h" />
+		<Unit filename="Cashier.h" />
+		<Unit filename="Client.h" />
+		<Unit filename="Node.h" />
+		<Unit filename="Queue.h" />
+		<Unit filename="Stack.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="matrix.cpp" />
-		<Unit filename="matrix.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

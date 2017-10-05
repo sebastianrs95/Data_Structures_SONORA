@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <ctime>
 #include "matrix.h"
+#include "linear.h"
 
 using namespace std;
 void printMenu();
@@ -12,7 +13,6 @@ void printSubMenu(int option);
 
 int main ()
 {
-    /*
     cout << endl << endl << "\t\t\tMATRIX OPERATIONS" << endl << endl << endl;
     printMenu();
 
@@ -21,7 +21,8 @@ int main ()
     cin >> option;
 
     printSubMenu(option);
-    */
+
+    /*
     double * mat, * bVec;
     int m, n, mVec, nVec;
     mat = readMatrixFromFile("sel.txt", m, n);
@@ -45,7 +46,7 @@ int main ()
 
 
 
-
+    */
     return 0;
 }
 
@@ -566,9 +567,80 @@ void printSubMenu( int option )
             free(result);
             break;
 
+        case SEL:
+
+            system("cls");
+
+            cout << "Read the matrices from a file? (if not, go back to menu)" << endl;
+            cout << "Type 1 for yes, 2 for no: ";
+
+            cin >> option;
 
 
+            double * bVector, * sel;
+            int mVec, nVec;
+            // Read from file
+            if( option == 1 )
+            {
+                system("cls");
+                cout << "Enter the name of the file holding the first matrix (with extension): ";
+                char filename[256];
 
+                scanf("%255s", filename);
+
+                sel = readMatrixFromFile(filename, m, n);
+
+                system("cls");
+                cout << "Enter the name of the file holding the bVector (with extension): ";
+
+                scanf("%255s", filename);
+
+                bVector = readMatrixFromFile(filename, mVec, nVec);
+
+                cout << endl << endl << "The matrix read is:" << endl << endl;
+                printMatrix(sel, m, n);
+
+                cout << endl << endl << "The B-vector read is:" << endl << endl;
+                printMatrix(bVector, nVec, mVec);
+
+                cout << endl;
+                system("pause");
+
+            }   // end of file reading
+
+            // Read manually or randomly
+            if( option == 2 )
+            {
+                system("cls");
+                cout << "NOTE: for file reading, follow this format:" << endl;
+                cout << "Example matrix: " << endl << endl;
+                cout << "3 5 7" << endl;
+                cout << "5 0 3" << endl;
+                cout << "9 7 8" << endl;
+                cout << endl << endl << "Enter it like so in the file." << endl;
+                system("pause");
+                system("cls");
+
+                cout << endl << endl << "\t\t\tMATRIX OPERATIONS" << endl << endl << endl;
+                printMenu();
+
+                int option;
+                cout << endl << endl << "Option: ";
+                cin >> option;
+
+                printSubMenu(option);
+            }
+
+            oldReduce(sel, bVector, m, n);
+            result = resolve(sel, bVector, n);
+
+            cout << "solution vector" << endl;
+            printMatrix(result, nVec, mVec);
+
+            free(mat);
+            free(bVector);
+            free(result);
+            break;
 
     } // end of switch
 }

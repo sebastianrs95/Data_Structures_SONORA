@@ -12,18 +12,19 @@
 
 1502943223 d:\lotta stuff\escuela\4o semestre\estructuras_de_datos\matrices\matrices\matrix.h
 
-1504768224 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\main.cpp
+1504934476 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\main.cpp
 	<cstdlib>
 	<iostream>
 	<stdio.h>
 	<ctime>
 	"matrix.h"
+	"linear.h"
 
 1504659498 d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.h
 	<string>
 	<vector>
 
-1504769278 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.cpp
+1504934546 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\matrix.cpp
 	<cstdlib>
 	<iomanip>
 	<iostream>
@@ -55,4 +56,17 @@
 	<fstream>
 	<sstream>
 	"matrix.h"
+
+1504934011 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\linear.cpp
+	<cstdlib>
+	<iomanip>
+	<iostream>
+	<cmath>
+	<string>
+	<vector>
+	<fstream>
+	<sstream>
+	"linear.h"
+
+1504934001 d:\lotta stuff\escuela\git-repos\data_structures_sonora\matrices\linear.h
 

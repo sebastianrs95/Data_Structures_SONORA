@@ -298,7 +298,7 @@ void changeRowsBVec( double * bVec, int position )
 
 /*************************************************************************************************************************/
 
-double makePivotOne( double * row, int n )
+double makePivotOne1( double * row, int n )
 {
     double *pRow = row;
     double value = 1.0 / (*pRow);
@@ -349,7 +349,7 @@ void modifyBVec( double * bVec, double value, int position )
 
 /*************************************************************************************************************************/
 
-int partialPivot( double * col, int numIt, int n )
+int partialPivot1( double * col, int numIt, int n )
 {
     double * pCol, greatest;
     pCol = col;
