@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1507150662 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/main.cpp
+	<iostream>
+	"Graph.h"
+
+1507151375 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/Graph.h
+	"NodeList.h"
+	"ArcList.h"
+	<cstdlib>
+
+1507151475 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/NodeList.h
+	"ArcList.h"
+
+1507151493 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/ArcList.h
+	<cstdlib>
+
