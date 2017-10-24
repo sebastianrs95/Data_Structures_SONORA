@@ -14,3 +14,20 @@
 1507151493 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/ArcList.h
 	<cstdlib>
 
+1508625585 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\main.cpp
+	<iostream>
+	"Graph.h"
+	"ArcList.h"
+	"NodeList.h"
+
+1508625746 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\graph.h
+	"NodeList.h"
+	"ArcList.h"
+	<cstdlib>
+
+1508625721 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\nodelist.h
+	"ArcList.h"
+
+1508290083 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\arclist.h
+	<cstdlib>
+

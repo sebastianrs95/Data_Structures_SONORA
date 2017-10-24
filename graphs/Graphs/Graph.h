@@ -38,6 +38,7 @@ class Graph
 
 Graph::Graph()
 {
+    A.renew();
 }
 
 Graph::~Graph()
@@ -49,13 +50,11 @@ void Graph::addArc(int firstNode, int secondNode)
     Node * temp;
     A.add(firstNode);
     temp = A.getLastNodeAdded();
-
     temp->outgoing.add(secondNode);
 
     A.add(secondNode);
     temp = A.getLastNodeAdded();
     temp->incoming.add(firstNode);
-
 }
 
 void Graph::print()

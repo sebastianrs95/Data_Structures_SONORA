@@ -21,8 +21,8 @@ class NodeList
         NodeList();
         ~NodeList();
 
-        //new();
-        //erase();
+        void renew();
+        void clear();
 
         bool searchNode(int value);
         int add(int value);
@@ -30,6 +30,7 @@ class NodeList
 
         Node * getLastNodeAdded();
         void print();
+        void oldPrint();
 
     private:
 
@@ -48,6 +49,29 @@ NodeList::NodeList()
 
 
 NodeList::~NodeList()
+{
+    Node * temp;
+
+    while(firstNode != NULL)
+    {
+        temp = firstNode;
+        firstNode = temp->next;
+        free(temp);
+    }
+
+    previousNode = firstNode = lastNode = NULL;
+    found = false;
+    where = EMPTY;
+}
+
+void NodeList::renew()
+{
+    firstNode = lastNode = previousNode = lastNodeAdded = NULL;
+    found = false;
+    where = EMPTY;
+}
+
+void NodeList::clear()
 {
     Node * temp;
 
@@ -88,6 +112,7 @@ bool NodeList::searchNode(int value)
                     if( temp->next == NULL ) where = END;
                     else where = BETWEEN;
                 }
+                lastNodeAdded = temp;
                 return true;
             }
 
@@ -118,19 +143,18 @@ int NodeList::add(int value)
 {
     Node * temp;
     found = searchNode(value);
-    if( found )
-    {
-        lastNodeAdded = previousNode->next;
-        return 0;
-    }
+    if( found ) return 0;
+
     temp = (Node*) malloc(sizeof(Node));
     temp->numNode = value;
-    //temp->outgoing.new();
+    temp->outgoing.renew();
+    temp->incoming.renew();
     //temp->incoming.erase();
 
     if( where == EMPTY )
     {
         temp->next = NULL;
+        lastNodeAdded = temp;
         firstNode = temp;
     }
     else
@@ -139,6 +163,7 @@ int NodeList::add(int value)
         {
             temp->next = firstNode;
             firstNode = temp;
+            lastNodeAdded = temp;
         }
         else
         {
@@ -146,6 +171,8 @@ int NodeList::add(int value)
             {
                 temp->next= previousNode->next;
                 previousNode->next = temp;
+                //lastNodeAdded = previousNode->next;
+                lastNodeAdded = temp;
             }
             else
             {
@@ -153,12 +180,13 @@ int NodeList::add(int value)
                 {
                     temp->next = NULL;
                     previousNode->next = temp;
+                    lastNodeAdded = temp;
                 }
             }
         }
     }
 
-    lastNodeAdded = temp;
+
 
     return 1;
 }
@@ -221,11 +249,21 @@ void NodeList::print()
 
         cout << endl << endl << "Incoming: " << endl << "\t";
         node->incoming.print();
-
+        cout << endl << endl << endl;
         node = node->next;
     }
+}
 
+void NodeList::oldPrint()
+{
+    Node * temp;
 
+    temp = firstNode;
+    while(temp)
+    {
+        cout << temp->numNode << " ";
+        temp = temp->next;
+    }
 }
 
 

@@ -21,8 +21,8 @@ class ArcList
         ArcList();
         ~ArcList();
 
-        //new();
-        //erase();
+        void renew();
+        void clear();
 
         bool searchNode(int value);
         int add(int value);
@@ -48,6 +48,29 @@ ArcList::ArcList()
 
 
 ArcList::~ArcList()
+{
+    arcNode * temp;
+
+    while(firstNode != NULL)
+    {
+        temp = firstNode;
+        firstNode = temp->next;
+        free(temp);
+    }
+
+    previousNode = firstNode = lastNode = NULL;
+    found = false;
+    where = EMPTY;
+}
+
+void ArcList::renew()
+{
+    firstNode = lastNode = previousNode = lastNodeAdded = NULL;
+    found = false;
+    where = EMPTY;
+}
+
+void ArcList::clear()
 {
     arcNode * temp;
 
@@ -122,7 +145,7 @@ int ArcList::add(int value)
     found = searchNode(value);
     if( found )
     {
-        lastNodeAdded = previousNode->next;
+        //lastNodeAdded = previousNode->next;
         return 0;
     }
 
