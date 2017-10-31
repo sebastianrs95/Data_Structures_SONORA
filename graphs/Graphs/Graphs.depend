@@ -1,17 +1,21 @@
 # depslib dependency file v1.0
-1507150662 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/main.cpp
+1509482376 source:/home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/main.cpp
 	<iostream>
 	"Graph.h"
+	"ArcList.h"
+	"NodeList.h"
+	"routeList.h"
 
-1507151375 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/Graph.h
+1509481146 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/Graph.h
 	"NodeList.h"
 	"ArcList.h"
 	<cstdlib>
 
-1507151475 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/NodeList.h
+1509481454 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/NodeList.h
 	"ArcList.h"
+	"Node.h"
 
-1507151493 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/ArcList.h
+1508874872 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/ArcList.h
 	<cstdlib>
 
 1508625585 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\main.cpp
@@ -29,5 +33,10 @@
 	"ArcList.h"
 
 1508290083 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\arclist.h
+	<cstdlib>
+
+1508874699 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/Node.h
+
+1509482418 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/routeList.h
 	<cstdlib>
 

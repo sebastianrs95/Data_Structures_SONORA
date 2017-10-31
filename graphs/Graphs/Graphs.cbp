@@ -36,6 +36,7 @@
 		<Unit filename="Graph.h" />
 		<Unit filename="NodeList.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="routeList.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

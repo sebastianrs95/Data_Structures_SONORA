@@ -6,11 +6,17 @@ using std::cout;
 
 enum { EMPTY = 0, BEGINNING, BETWEEN, END };
 
+struct Node;
+
 struct arcNode
 {
     int numNode;
     arcNode * next;
+    Node * nodeAddress;     // the address of the node it belongs to
+    float length;
 };
+
+
 
 class ArcList
 {
@@ -151,6 +157,7 @@ int ArcList::add(int value)
 
     temp = (arcNode*) malloc(sizeof(arcNode));
     temp->numNode = value;
+    temp->nodeAddress = NULL;
     if( where == EMPTY )
     {
         temp->next = NULL;
@@ -237,5 +244,7 @@ void ArcList::print()
         temp = temp->next;
     }
 }
+
+
 
 #endif // ARCLIST_H_INCLUDED

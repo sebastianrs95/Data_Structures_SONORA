@@ -2,15 +2,21 @@
 #define NODELIST_H_INCLUDED
 
 #include "ArcList.h"
+#include "Node.h"
 
 using std::cout;
 using std::endl;
 
+struct routeNode;
+
 struct Node
 {
     int numNode;
-    Node * next;
+    float shortestRoute;
+    int flag;
+    Node * predecessor, * next;
     ArcList incoming, outgoing;
+    routeNode * address;
 };
 
 class NodeList

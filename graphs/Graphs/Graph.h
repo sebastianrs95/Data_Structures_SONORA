@@ -31,8 +31,14 @@ class Graph
         */
         void print();
 
+
+        void getShortestRoute(int startNode, int endNode);
+
+
     private:
         NodeList A;
+        RouteList L;
+        bool routeExists;
 
 };
 
@@ -47,15 +53,42 @@ Graph::~Graph()
 
 void Graph::addArc(int firstNode, int secondNode)
 {
-    Node * temp;
+    Node * temp, * temp2;
+    arcNode * tempArc;
+
     A.add(firstNode);
     temp = A.getLastNodeAdded();
     temp->outgoing.add(secondNode);
+    tempArc = temp->outgoing.getLastNodeAdded();
 
     A.add(secondNode);
-    temp = A.getLastNodeAdded();
-    temp->incoming.add(firstNode);
+    temp2 = A.getLastNodeAdded();
+
+    tempArc->nodeAddress = temp2;
+    temp2->incoming.add(firstNode);
+    tempArc = temp2->incoming.getLastNodeAdded();
+    tempArc->nodeAddress = temp;
 }
+
+void Graph::getShortestRoute(int startNode, int endNode)
+{
+    Node* p;
+    arcNode* q;
+
+    A.add(startNode);
+    p = A.getLastNodeAdded();
+
+    while(p)
+    {
+        p->flag = 2;
+        if(p->numNode == endNode)
+        {
+            routeExists = true;
+
+        }
+    }
+}
+
 
 void Graph::print()
 {
