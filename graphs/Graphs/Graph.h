@@ -35,7 +35,7 @@ class Graph
 
 
         void getShortestRoute(int startNode, int endNode);
-        void printShortestRoute(){ L.print(); }
+        void printShortestRoute(){ L.printShortestRoute(); }
 
         bool getRouteExists(){return routeExists; }
 
@@ -108,6 +108,7 @@ void Graph::getShortestRoute(int startNode, int endNode)
         }
 
         q = p->outgoing.getFirstNode();
+        if(q == NULL) return;
         while(q)
         {
             //cout << "q is: " << q->numNode << endl;
@@ -140,6 +141,7 @@ void Graph::getShortestRoute(int startNode, int endNode)
 
         } // end of while(q)
         p = L.getFirstNode();
+        if(p == NULL) return;
     } // end of while(p)
 }
 

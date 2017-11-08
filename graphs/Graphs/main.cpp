@@ -10,26 +10,35 @@ int main()
 {
     Graph G;
 
-    G.addArc(1,2,1);
-    G.addArc(1,3,2);
-    G.addArc(1,4,2);
+    G.addArc(1,2,3);
+    G.addArc(1,3,4);
 
-    G.addArc(2,3,4);
-    G.addArc(2,5,1);
+    G.addArc(2,5,6);
+    G.addArc(2,6,9);
 
-    G.addArc(3,4,1);
-    G.addArc(3,5,7);
-    G.addArc(3,6,2);
+    G.addArc(3,4,9);
+    G.addArc(3,5,8);
 
-    G.addArc(4,6,1);
+    G.addArc(4,5,1);
 
-    G.addArc(5,7,1);
+    G.addArc(5,7,5);
+    G.addArc(5,8,2);
 
-    G.addArc(6,5,3);
-    G.addArc(6,7,2);
+    G.addArc(6,9,6);
 
+    G.addArc(7,8,6);
 
-    //G.print();
+    G.addArc(8,10,9);
+    G.addArc(8,9,3);
+
+    G.addArc(9,12,7);
+
+    G.addArc(10,11,8);
+
+    G.addArc(11,12,6);
+    G.addArc(11,13,6);
+
+    G.print();
 
     int firstNode, secondNode;
     cout << "Enter the first node's tag: ";
@@ -41,8 +50,16 @@ int main()
 
     if(G.getRouteExists())
     {
+        system("cls");
         cout << "The shortest route between node " << firstNode << " and " << secondNode << " is:" << endl;
+        cout << endl << endl;
         G.printShortestRoute();
+        cout << endl << endl << endl;
+    }
+    else
+    {
+        system("cls");
+        cout << "The route doesn't exist between node " << firstNode << " and " << secondNode << endl;
     }
 
 

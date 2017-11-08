@@ -72,6 +72,12 @@ public:
 
 
     /**
+        \brief Prints the shortest route.
+    */
+    void printShortestRoute();
+
+
+    /**
 
         \brief Returns the number of elements in the Doubly-Linked List.
         \return The number of elements in the doubly-linked list.
@@ -315,6 +321,26 @@ void RouteList::print()
         //cout << temp->length << " | ";
         temp = temp->next;
     }
+}
+
+
+/***************************************************************************************/
+
+void RouteList::printShortestRoute()
+{
+    routeNode * temp;
+    float length;
+
+    temp = firstNode;
+    while(temp)
+    {
+        cout << "Node " << temp->address->numNode << " -> ";
+        //cout << temp->length << " | ";
+        length = temp->address->shortestRoute;
+        temp = temp->next;
+    }
+    cout << "\b\b\b   ";
+    cout << endl << "with a total length of: " << length;
 }
 
 
