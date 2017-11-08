@@ -12,11 +12,12 @@ struct routeNode;
 struct Node
 {
     int numNode;
-    float shortestRoute;
     int flag;
+    float shortestRoute;
     Node * predecessor, * next;
-    ArcList incoming, outgoing;
     routeNode * address;
+
+    ArcList incoming, outgoing;
 };
 
 class NodeList
@@ -153,6 +154,10 @@ int NodeList::add(int value)
 
     temp = (Node*) malloc(sizeof(Node));
     temp->numNode = value;
+    temp->flag = 0;
+    temp->shortestRoute = 0;
+    temp->address = NULL;
+    temp->predecessor = NULL;
     temp->outgoing.renew();
     temp->incoming.renew();
     //temp->incoming.erase();

@@ -10,36 +10,73 @@ int main()
 {
     Graph G;
 
-    G.addArc(1,2);
+    G.addArc(1,2,1);
+    G.addArc(1,3,2);
+    G.addArc(1,4,2);
 
-    G.addArc(1,3);
-    G.addArc(1,4);
-    G.addArc(2,3);
-    //G.addArc(4,3);
-    G.addArc(3,4);
-    G.addArc(4,5);
-    G.addArc(5,7);
-    G.addArc(6,7);
-    G.addArc(2,6);
-    G.addArc(3,5);
-    G.addArc(3,6);
+    G.addArc(2,3,4);
+    G.addArc(2,5,1);
 
-    G.print();
+    G.addArc(3,4,1);
+    G.addArc(3,5,7);
+    G.addArc(3,6,2);
+
+    G.addArc(4,6,1);
+
+    G.addArc(5,7,1);
+
+    G.addArc(6,5,3);
+    G.addArc(6,7,2);
 
 
-    /*
-    //ArcList l;
-    NodeList l;
-    l.add(3);
-    l.add(1);
-    l.add(2);
+    //G.print();
 
-    l.oldPrint();
-    l.add(-9);
-    cout << endl;
-    l.oldPrint();
-    cout << endl;
+    int firstNode, secondNode;
+    cout << "Enter the first node's tag: ";
+    cin >> firstNode;
+
+    cout << endl << endl << "Enter the second node's tag: ";
+    cin >> secondNode;
+    G.getShortestRoute( firstNode, secondNode );
+
+    if(G.getRouteExists())
+    {
+        cout << "The shortest route between node " << firstNode << " and " << secondNode << " is:" << endl;
+        G.printShortestRoute();
+    }
+
+
+/*
+
+    RouteList l;
+
+    Node * example = new Node;
+    example->numNode = 8;
+
+    l.add(NULL, 2);
+
+    l.add(NULL, 1);
+    l.add(example, 5);
+
+    example->address = l.getLastNodeAdded();
+
+    l.add(NULL, 4);
+
+    l.add(NULL, 6);
+    l.add(NULL, 6);
+    l.add(NULL, 3);
+    l.add(NULL, 3);
+
+
+    //l.adjust(example->address, 1);
+
+
+
+    l.print();
+
     */
+
+
 
     return 0;
 }

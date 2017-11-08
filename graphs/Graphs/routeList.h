@@ -10,15 +10,17 @@ struct Node;
 /**
     \brief A doubly-linked list, that is sorted and doesn't allow for repetition.
 */
-template <typename T>
+
+struct routeNode
+{
+    float length;
+    Node * address;
+    routeNode * next, * previous;
+};
+
 class RouteList
 {
-    struct routeNode
-    {
-        T length;
-        Node * address;
-        routeNode * next, * previous;
-    };
+
 
 public:
 
@@ -26,6 +28,11 @@ public:
         \brief Basic constructor for the Doubly-Linked List.
     */
     RouteList();
+
+    /**
+        \brief Basic constructor for the Doubly-Linked List.
+    */
+    void renew();
 
     /**
         \brief Basic destructor fo the Doubly-Linked List.
@@ -37,7 +44,7 @@ public:
                 It changes the FOUND attribute.
         \param a A variable of type T that will be added to the doubly-linked list.
     */
-    bool searchNode(T value);
+    bool searchNode(float value);
 
 
     /**
@@ -46,7 +53,7 @@ public:
         \param a A variable of type T that will be added to the doubly-linked list.
         \return An integer that indicates success (1) or failure (0).
     */
-    int add(Node * address, T value);
+    int add(Node * address, float value);
 
 
     /**
@@ -54,7 +61,7 @@ public:
         \param a A variable of type T that will be removed from the doubly-linked list.
         \return An integer that indicates success (1) or failure (0).
     */
-    int remove(T a);
+    int remove(float a);
 
 
 
@@ -71,9 +78,30 @@ public:
     */
     int size(){ return numElements; }
 
+
+    /**
+        \brief Returns the pointer to the Node contained in the first routeNode of the Doubly-Linked List.
+        \return The pointer to the Node contained in the first routeNode of the Doubly-Linked List.
+    */
+    Node * getFirstNode();
+
+
+    /**
+        \brief Returns the pointer to the last routeNode added.
+        \return The pointer to the last routeNode added.
+    */
+    routeNode * getLastNodeAdded(){ return lastNodeAdded; }
+
+    /**
+        \brief Adjusts the length of a routeNode with the parameter provided.
+        \param addressNode A pointer to a routeNode which length is to be changed.
+        \param shortRoute The length to replace the old one.
+    */
+    void adjust(routeNode * addressNode, float shortRoute);
+
 private:
 
-    routeNode * firstNode, * lastNode, * previousNode;
+    routeNode * firstNode, * lastNode, * previousNode, *lastNodeAdded;
     bool found;
     int where, numElements;
 
@@ -81,10 +109,10 @@ private:
 
 
 /***************************************************************************************/
-template <typename T>
-RouteList<T>::RouteList()
+
+RouteList::RouteList()
 {
-    previousNode = firstNode = lastNode = NULL;
+    previousNode = firstNode = lastNode = lastNodeAdded = NULL;
     found = false;
     where = numElements = 0;
 }
@@ -92,8 +120,17 @@ RouteList<T>::RouteList()
 
 /***************************************************************************************/
 
-template <typename T>
-RouteList<T>::~RouteList()
+void RouteList::renew()
+{
+    previousNode = firstNode = lastNode = lastNodeAdded = NULL;
+    found = false;
+    where = numElements = 0;
+}
+
+
+/***************************************************************************************/
+
+RouteList::~RouteList()
 {
     routeNode * temp;
 
@@ -112,8 +149,7 @@ RouteList<T>::~RouteList()
 
 /***************************************************************************************/
 
-template <typename T>
-bool RouteList<T>::searchNode(T value)
+bool RouteList::searchNode(float value)
 {
     routeNode * temp;
     temp = firstNode;
@@ -162,11 +198,11 @@ bool RouteList<T>::searchNode(T value)
 
 /***************************************************************************************/
 
-template <typename T>
-int RouteList<T>::add(Node * address, T value)
+int RouteList::add(Node * address, float value)
 {
     routeNode * temp;
     found = searchNode(value);
+
 
     //if(found) return 0;
     temp = (routeNode*) malloc(sizeof(routeNode));
@@ -184,10 +220,20 @@ int RouteList<T>::add(Node * address, T value)
     {
         if( where == BEGINNING )
         {
-            temp->next = firstNode;
-            firstNode = temp;
-            temp->previous = NULL;
-            temp->next->previous = temp;
+            if(temp->length == firstNode->length && numElements > 1)
+            {
+                firstNode->next->previous = temp;
+                temp->next = firstNode->next;
+                temp->previous = firstNode;
+                firstNode->next = temp;
+            }
+            else
+            {
+                temp->next = firstNode;
+                firstNode = temp;
+                temp->previous = NULL;
+                temp->next->previous = temp;
+            }
         }
         else
         {
@@ -202,14 +248,17 @@ int RouteList<T>::add(Node * address, T value)
             {
                 if( where == END )
                 {
+
                     temp->next = NULL;
-                    previousNode->next = temp;
-                    temp->previous = previousNode;
+                    lastNode->next = temp;
+                    temp->previous = lastNode;
                     lastNode = temp;
                 }
             }
         }
     }
+
+    lastNodeAdded = temp;
     ++numElements;
     return 1;
 }
@@ -217,8 +266,7 @@ int RouteList<T>::add(Node * address, T value)
 
 /***************************************************************************************/
 
-template <typename T>
-int RouteList<T>::remove(T value)
+int RouteList::remove(float value)
 {
     routeNode * temp;
     found = searchNode(value);
@@ -229,6 +277,8 @@ int RouteList<T>::remove(T value)
         firstNode = temp->next;
         if(firstNode == NULL) lastNode = NULL;
         else firstNode->previous  = NULL;
+        numElements--;
+        return 1;
     }
     else
     {
@@ -245,6 +295,7 @@ int RouteList<T>::remove(T value)
             lastNode = previousNode;
         }
     }
+    numElements--;
     free(temp);
     return 1;
 
@@ -253,16 +304,49 @@ int RouteList<T>::remove(T value)
 
 /***************************************************************************************/
 
-template <typename T>
-void RouteList<T>::print()
+void RouteList::print()
 {
     routeNode * temp;
 
     temp = firstNode;
     while(temp)
     {
-        cout << temp->length << " ";
+        cout << "Node " << temp->address->numNode << ", " << temp->length << " | ";
+        //cout << temp->length << " | ";
         temp = temp->next;
+    }
+}
+
+
+/***************************************************************************************/
+
+Node * RouteList::getFirstNode()
+{
+    Node * temp = firstNode->address;
+    remove(firstNode->length);
+    return temp;
+}
+
+void RouteList::adjust(routeNode * address, float shortRoute)
+{
+    address->length = shortRoute;
+
+    routeNode * temp;
+
+    temp = address->previous;
+    if(temp == NULL ) return;
+
+    while( address->length < temp->length )    // this is, if the previous routeNode has a greater length, move them
+    {
+        temp->next = address->next;
+        address->next->previous = temp;
+        address->next = temp;
+        address->previous = temp->previous;
+        temp->previous->next = address;
+        temp->previous = address;
+
+        temp = address->previous;
+        if(temp == NULL) break;
     }
 }
 

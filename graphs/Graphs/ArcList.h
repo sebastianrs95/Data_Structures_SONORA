@@ -11,9 +11,9 @@ struct Node;
 struct arcNode
 {
     int numNode;
-    arcNode * next;
-    Node * nodeAddress;     // the address of the node it belongs to
     float length;
+    Node * nodeAddress;     // the address of the node it belongs to
+    arcNode * next;
 };
 
 
@@ -34,6 +34,7 @@ class ArcList
         int add(int value);
         int remove(int value);
 
+        arcNode * getFirstNode(){ return firstNode; }
         arcNode * getLastNodeAdded();
         void print();
 
@@ -240,7 +241,7 @@ void ArcList::print()
     temp = firstNode;
     while(temp)
     {
-        cout << temp->numNode << " ";
+        cout << temp->numNode << ", with length " << temp->length << " ||| ";
         temp = temp->next;
     }
 }

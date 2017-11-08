@@ -18,25 +18,33 @@
 1508874872 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/ArcList.h
 	<cstdlib>
 
-1508625585 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\main.cpp
+1510130293 source:d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\main.cpp
 	<iostream>
 	"Graph.h"
 	"ArcList.h"
 	"NodeList.h"
+	"routeList.h"
 
-1508625746 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\graph.h
+1510130329 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\graph.h
 	"NodeList.h"
 	"ArcList.h"
+	"routeList.h"
 	<cstdlib>
 
-1508625721 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\nodelist.h
+1510125798 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\nodelist.h
 	"ArcList.h"
+	"Node.h"
 
-1508290083 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\arclist.h
+1510125328 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\arclist.h
 	<cstdlib>
 
 1508874699 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/Node.h
 
 1509482418 /home/sebastianrs/Desktop/git-repos/Data_Structures_SONORA/graphs/Graphs/routeList.h
+	<cstdlib>
+
+1510118850 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\node.h
+
+1510130206 d:\lotta stuff\escuela\git-repos\data_structures_sonora\graphs\graphs\routelist.h
 	<cstdlib>
 
