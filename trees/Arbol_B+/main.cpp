@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "pruebas.h"
 #include "TreeNode.h"
 #include "BPTree.h"
 
@@ -39,7 +38,7 @@ int main()
     bp.print();
 
     bp.add(15);
-    bp.print();
+    bp.print();{}
 
     bp.add(8);
     bp.print();
@@ -70,6 +69,10 @@ int main()
     bp.print();
 
     bp.deleteValue(40);
+    //bp.deleteValue(20);
+    bp.print();
+
+    //bp.deleteValue(11);
     bp.print();
 
 

@@ -23,7 +23,7 @@ public:
     void split(TreeNode *tNode);
     void deleteValue(int value);
     bool borrow(TreeNode *tNode);
-    void mergeNodes(TreeNode *tNode);
+    TreeNode* mergeNodes(TreeNode *tNode);
     void print();
 
 };
@@ -356,8 +356,18 @@ void BPTree::deleteValue(int value)
         if(!couldBorrow)
         {
             std::cout<<"NEED MERGE!!!\n";
-            mergeNodes(temp);
+            temp = mergeNodes(temp);
+
+            std::cout<<"AFTER MERGE\n TEMP: ";
+            temp->print();
+
+            std::cout<<"TEMP PARENT: ";
+            if(temp->parent) temp->parent->print();
+            else std::cout<<"this is the root";
         }//call merge
+        std::cout<<"Root: ";
+        root->print();
+        if (temp==root) return;
         temp=temp->parent;
     }
 
@@ -379,7 +389,6 @@ bool BPTree::borrow(TreeNode *tNode)
     {
        std::cout<<"borrow1\n";
        if(temp->parent->children[indexChildren-1]->data.size()<=degree) return false; //check if the node that will borrow have n+1 elements if not return false to merge
-
        if(temp->isLeaf)
        {
            /*Node *newNode;
@@ -442,7 +451,7 @@ bool BPTree::borrow(TreeNode *tNode)
     return true;
 }
 //****************************************************************************************
-void BPTree::mergeNodes(TreeNode *tNode)
+TreeNode * BPTree::mergeNodes(TreeNode *tNode)
 {
     TreeNode *temp;
     temp = tNode;
@@ -464,13 +473,15 @@ void BPTree::mergeNodes(TreeNode *tNode)
             }
             temp->parent->data.pop_back();
             temp->parent->children.pop_back();
-            tNode =auxDir;
+            return auxDir;
 
         }
 
         else
         {
             temp=temp->parent->children[indexChildren-1];
+
+            temp->print();
 
             temp->data.push_back(temp->parent->data.back());//put the split key in the merged node
 
@@ -480,10 +491,17 @@ void BPTree::mergeNodes(TreeNode *tNode)
                 temp->data.push_back(temp->parent->children[indexChildren]->data[i]);
             }
 
+            temp->print();
+
             for(int i=0; i<temp->parent->children[indexChildren]->children.size(); i++)
             {
                 std::cout<<"for loop2\n";
                 temp->children.push_back(temp->parent->children[indexChildren]->children[i]);
+            }
+
+            for(int i=0; i<temp->children.size();i++)
+            {
+                temp->children[i]->parent=temp;
             }
 
             temp->parent->children.pop_back();
@@ -495,14 +513,22 @@ void BPTree::mergeNodes(TreeNode *tNode)
                 temp->parent=NULL;
             }
 
+            tNode=temp;
 
+            tNode->print();
+
+            return temp;
+
+            //tNode=temp;
 
 
         }//close else
     }
 
     else if(temp->parent->children.front()==temp)//first left children
-    {
+    {tNode=temp;
+
+            tNode->print();
         std::cout<<"Merge2\n";
         if(temp->isLeaf)
         {
@@ -510,6 +536,11 @@ void BPTree::mergeNodes(TreeNode *tNode)
             {
                 std::cout<<"for loop\n";
                 temp->data.push_back(temp->parent->children[1]->data[i]);
+            }
+
+            for(int i=0; i<temp->children.size();i++)
+            {
+                temp->children[i]->parent=temp;
             }
 
             temp->parent->children.erase(temp->parent->children.begin()+1);
@@ -531,14 +562,22 @@ void BPTree::mergeNodes(TreeNode *tNode)
                 temp->children.push_back(temp->parent->children[1]->children[i]);
             }
 
-            temp->parent->children.erase(temp->parent->children.begin()+1);
+            for(int i=0; i<temp->children.size();i++)
+            {
+                temp->children[i]->parent=temp;
+            }
+
             temp->parent->data.erase(temp->parent->data.begin());
             if (temp->parent==root && root->data.size()==0)
             {
                 root=temp;
                 delete(temp->parent);
                 temp->parent=NULL;
+                return temp;
             }
+
+            temp->parent->children.erase(temp->parent->children.begin()+1);
+            temp->parent->data.erase(temp->parent->data.begin());
         }//close else
     }
 
@@ -555,6 +594,11 @@ void BPTree::mergeNodes(TreeNode *tNode)
             for(int i=0; i<temp->parent->children[indexChildren+1]->data.size(); i++)
             {
                 temp->data.push_back(temp->parent->children[indexChildren+1]->data[i]);
+            }
+
+            for(int i=0; i<temp->children.size();i++)
+            {
+                temp->children[i]->parent=temp;
             }
 
             temp->parent->children.erase(temp->parent->children.begin()+indexChildren+1);
@@ -579,6 +623,11 @@ void BPTree::mergeNodes(TreeNode *tNode)
                 temp->children.push_back(temp->parent->children[indexChildren]->children[i]);
             }
 
+            for(int i=0; i<temp->children.size();i++)
+            {
+                temp->children[i]->parent=temp;
+            }
+
             temp->parent->children.erase(temp->parent->children.begin()+indexChildren);
             temp->parent->data.erase(temp->parent->data.begin()+indexChildren);
             if (temp->parent==root && root->data.size()==0)
@@ -590,6 +639,8 @@ void BPTree::mergeNodes(TreeNode *tNode)
 
         }//close else
     }
+
+    return temp;
 
 }
 //****************************************************************************************
