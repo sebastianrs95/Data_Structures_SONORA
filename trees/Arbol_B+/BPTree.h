@@ -4,8 +4,10 @@
 #include <queue>
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 using std::queue;
+using std::ofstream;
 
 class BPTree
 {
@@ -25,6 +27,8 @@ public:
     bool borrow(TreeNode *tNode);
     TreeNode* mergeNodes(TreeNode *tNode);
     void print();
+
+    void readFromFile( const char * filename );
 
 };
 
@@ -680,6 +684,26 @@ void BPTree::print()
     }
     std::cout << "imprimiendo raiz" << std::endl;
     root->print();
+}
+
+/*************************************************************************************************************************/
+
+
+void BPTree::readFromFile( const char * filename )
+{
+    std::ifstream ifile(filename, std::ios::in);
+
+    if(!ifile.is_open())
+    {
+        std::cerr << "There was a problem opening the input file!\n";
+        return;
+    }
+
+    double num = 0.0;
+    while( ifile >> num ){
+        add(num);
+    }
+    ifile.close();
 }
 
 #endif // BPTREE_H_INCLUDED
