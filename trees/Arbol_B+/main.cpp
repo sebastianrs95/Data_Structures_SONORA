@@ -35,12 +35,42 @@ int main()
     bp.add(50);
     bp.print();
 
-    bp.add(20);
+    bp.add(40);
     bp.print();
 
     bp.add(15);
     bp.print();
 
+    bp.add(8);
+    bp.print();
+
+
+    bp.add(5);
+    bp.print();
+
+    bp.add(60);
+    bp.print();
+
+    bp.add(70);
+    bp.print();
+
+    bp.add(20);
+    bp.print();
+
+    bp.add(18);
+    bp.print();
+
+    bp.add(49);
+    bp.print();
+
+    bp.deleteValue(50);
+    bp.print();
+
+    bp.deleteValue(60);
+    bp.print();
+
+    bp.deleteValue(40);
+    bp.print();
 
 
     return 0;
