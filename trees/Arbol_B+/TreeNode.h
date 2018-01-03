@@ -26,11 +26,72 @@ class TreeNode {
 
 public:
 
-    TreeNode(){ isLeaf = false; data.clear(); children.clear() ;}
-    ~TreeNode(){}
+
+    /**
+        \brief Default constructor
+    */
+    TreeNode()
+    {
+        isLeaf = false;
+        data.clear();
+        children.clear();
+        parent = NULL;
+    }
+
+
+    /**
+        \brief Destructor
+    */
+    ~TreeNode()
+    {
+        Node * p;
+        int numElements = data.size();
+        for(int i = 0; i < numElements ; ++i)
+        {
+            p = data.back();
+            data.pop_back();
+            p = NULL;
+        }
+
+        TreeNode * q;
+        numElements = children.size();
+        for(int i = 0; i < numElements ; ++i)
+        {
+            q = children.back();
+            children.pop_back();
+            q = NULL;
+        }
+
+        parent = NULL;
+        isLeaf = false;
+    }
+
+
+    /**
+        \brief Adds a Node to the data (a vector<Node*>).
+        \param newNode The Node to be added to data.
+    */
     void addNode(Node* newNode);
+
+
+    /**
+        \brief Prints the contents of the data vector.
+    */
     void print();
+
+
+    /**
+        \brief Checks itself to see if it is a leaf.
+        \return A boolean that indicates if it is a leaf or not.
+    */
     bool checkLeaf(){ return isLeaf; }
+
+
+
+    /**
+        \brief Sets the value of the isLeaf variable.
+        \param status The value to be inserted to isLeaf.
+    */
     void setLeafStatus(bool status){ isLeaf = status; }
 
 };

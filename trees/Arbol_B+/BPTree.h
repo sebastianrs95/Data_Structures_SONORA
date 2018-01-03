@@ -17,7 +17,36 @@ class BPTree
 public:
 
     BPTree(){degree =2; root=NULL;}
-    ~BPTree(){}
+    BPTree(int _degree){degree =_degree; root=NULL;}
+
+    ~BPTree()
+    {
+        queue<TreeNode*> levels;
+        TreeNode * p;
+
+        levels.push(root);
+        while(!levels.empty())
+        {
+            if(!levels.front()->checkLeaf())
+            {
+                for(int i = 0 ; i < levels.front()->children.size() ; ++i)
+                {
+                    levels.push(levels.front()->children[i]);
+                }
+                p = levels.front();
+                delete p;
+                levels.pop();
+
+            }
+
+            else
+            {
+                p = levels.front();
+                delete p;
+                levels.pop();
+            }
+        }
+    }
 
     /**
         \brief  Searches for an element inside the tree.
@@ -89,6 +118,12 @@ public:
         \param filename A string that contains the file to be read.
     */
     void deleteFromFile( const char * filename );
+
+    /**
+        \brief
+        \param
+    */
+    void saveToFile ( const char * filename);
 
 };
 
@@ -188,7 +223,6 @@ void BPTree::splitRoot(TreeNode *tNode)
             auxR->data.push_back(temp->data[i]);
         }
 
-        auxR->print();
         int auxSize = temp->data.size();
 
         //we made a for with the same number of iterations than the last for
@@ -758,5 +792,41 @@ void BPTree::deleteFromFile( const char * filename )
     ifile.close();
 }
 
+//************************************************************************
+void BPTree::saveToFile ( const char * filename)
+{
+   queue<TreeNode> levels;
 
+   std::ofstream outputFile;
+   outputFile.open(filename);
+
+    if(root->checkLeaf())
+    {
+        for(int i=0;i<root->data.size(); i++) outputFile<<root->data[i]->value;
+        outputFile.close();
+        return;
+    }
+
+    levels.push(*root);
+    while(!levels.empty())
+    {
+        if(!levels.front().checkLeaf())
+        {
+            for(int i = 0 ; i < levels.front().children.size() ; ++i)
+            {
+                levels.push(*levels.front().children[i]);
+            }
+            levels.pop();
+
+        }
+
+        else
+        {
+            for(int i=0;i<levels.front().data.size(); i++) outputFile<<levels.front().data[i]->value<<std::endl;
+            levels.pop();
+        }
+    }
+
+    outputFile.close();
+}
 #endif // BPTREE_H_INCLUDED
