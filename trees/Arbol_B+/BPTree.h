@@ -6,7 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-
 using std::queue;
 
 class BPTree
@@ -20,34 +19,84 @@ public:
     BPTree(){degree =2; root=NULL;}
     ~BPTree(){}
 
-
+    /**
+        \brief  Searches for an element inside the tree.
+        \param value The value to be searched inside the tree.
+        \return A pointer to the TreeNode that contains such value.
+    */
     TreeNode * searchNode(int value);
-    void add(int value);
-    void splitRoot(TreeNode *tNode);
-    void split(TreeNode *tNode);
-    void deleteValue(int value);
-    bool borrow(TreeNode *tNode);
-    TreeNode* mergeNodes(TreeNode *tNode);
-    void print();
-    void readFromFile( const char * filename );
-    void deleteFromFile( const char * filename );
-    TreeNode * searchIndex(int value);
-    void changeReference(TreeNode *tNode, int value);
 
+
+    /**
+        \brief Method that adds a value to the BPTree
+        \param value The value to be added.
+    */
+    void add(int value);
+
+
+    /**
+        \brief Splits a TreeNode if it is the root, regarding the case.
+        \param tNode A pointer to a TreeNode that contains the node to be split.
+    */
+    void splitRoot(TreeNode *tNode);
+
+
+    /**
+        \brief Splits a TreeNode, regarding the case.
+        \param tNode A pointer to a TreeNode that contains the node to be split.
+    */
+    void split(TreeNode *tNode);
+
+
+    /**
+        \brief Deletes a value from the BPTree, prints a message if it's not there.
+        \param value The value to be deleted.
+    */
+    void deleteValue(int value);
+
+
+    /**
+        \brief Checks if a TreeNode can borrow a value from a sibling, and if it can, it does so.
+        \param tNode A pointer to a TreeNode that contains the node that will try to borrow.
+        \return A boolean that indicates whether it could borrow or not.
+    */
+    bool borrow(TreeNode *tNode);
+
+
+    /**
+        \brief Merges a node, regarding its case.
+        \param tNode A pointer to a TreeNode that contains the node to be merged.
+        \return A pointer to the TreeNode that was just merged.
+    */
+    TreeNode* mergeNodes(TreeNode *tNode);
+
+
+    /**
+        \brief Prints the contents of the leaves.
+    */
+    void print();
+
+
+    /**
+        \brief Reads data from a file, and then it inserts it to the BPTree.
+        \param filename A string that contains the file to be read.
+    */
+    void readFromFile( const char * filename );
+
+
+    /**
+        \brief Reads data from a file, and then it deletes it from the BPTree.
+        \param filename A string that contains the file to be read.
+    */
+    void deleteFromFile( const char * filename );
 
 };
 
-    /*
-     \brief  function that search if a element if present on the tree
-     \param value the value to be search in the tree
-     \return a boolean that indicates if the element was found
-    */
 TreeNode * BPTree::searchNode(int value)
 {
     if(!root)
     {
         found=false;
-        //std::cout<<"Not root\n";
         return (NULL);
     }
 
@@ -56,7 +105,6 @@ TreeNode * BPTree::searchNode(int value)
     int i;
     while(!temp->isLeaf)
     {
-        //std::cout<<"entered while\n";
         i=0;
         for(; i<temp->data.size();i++)
         {
@@ -75,14 +123,11 @@ TreeNode * BPTree::searchNode(int value)
         if(value==temp->data[i]->value)
         {
             found=true;
-            //std::cout<<"Found\n";
             return(temp);
         }
     }
 
-    //if(found) return temp;
     found= false;
-    //std::cout<<"Not Found\n";
     return(temp);
 }
 
@@ -90,7 +135,6 @@ TreeNode * BPTree::searchNode(int value)
 
 void BPTree::add(int value)
 {
-    //std::cout<<"Add entered\n";
     TreeNode *temp = searchNode(value);
     if(found)
     {
@@ -906,65 +950,7 @@ TreeNode * BPTree::mergeNodes(TreeNode *tNode)
     return temp;
 
 }
-//****************************************************************************************
-TreeNode * BPTree::searchIndex(int value)
-{
-    if(!root)
-    {
-        found=false;
-        std::cout<<"Not root\n";
-        return (NULL);
-    }
 
-    TreeNode *temp;
-    temp = root;
-    int i;
-    while(!temp->isLeaf)
-    {
-        //std::cout<<"entered while\n";
-        i=0;
-        for(; i<temp->data.size();i++)
-        {
-            if(value<temp->data[i]->value)break;
-            if(value==temp->data[i]->value)
-            {
-                return temp;
-            }
-        }
-        temp= temp->children[i];
-    }
-
-    return(NULL);
-
-}
-
-//****************************************************************************************
-void BPTree::changeReference(TreeNode *tNode, int value)
-{
-    TreeNode *temp;
-    temp =tNode;
-
-    int i=0;
-    for(; i<temp->data.size();i++)
-    {
-        if(value==temp->data[i]->value)
-        {
-            i++;
-            break;
-        }
-    }
-
-    temp= temp->children[i];
-
-    while(!temp->isLeaf)
-    {
-        temp=temp->children[0];
-    }
-
-    tNode->data[i-1]->value=value;
-
-
-}
 
 //****************************************************************************************
 void BPTree::print()
@@ -1038,4 +1024,6 @@ void BPTree::deleteFromFile( const char * filename )
     }
     ifile.close();
 }
+
+
 #endif // BPTREE_H_INCLUDED
