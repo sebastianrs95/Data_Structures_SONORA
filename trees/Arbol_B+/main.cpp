@@ -50,12 +50,13 @@ int main()
             case 2:
                 cout<<"Ingrese el valor a buscar: ";
                 cin>>value;
-                //bp.searchValue(value)
+                if(bp.searchValue(value)) cout << "El elemento fue encontrado." << endl;
+                else cout << "El elemento no fue encontrado." << endl;
                 system("pause");;
                 break;
 
             case 3:
-                cout<<"Nombre del archivo a que contiene los valores a eliminar: ";
+                cout<<"Nombre del archivo que contiene los valores a eliminar: ";
                 cin>>path;
                 bp.deleteFromFile(path);
                 cout<<"Los valores han sido eliminados"<<endl;

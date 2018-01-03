@@ -12,7 +12,7 @@ class BPTree
 {
     TreeNode * root;
     bool found;
-    int degree; // Minimun number of elements on a node
+    int degree; // Minimum number of elements on a node
 
 public:
 
@@ -54,6 +54,14 @@ public:
         \return A pointer to the TreeNode that contains such value.
     */
     TreeNode * searchNode(int value);
+
+
+    /**
+        \brief  Searches for an element inside the tree.
+        \param value The value to be searched inside the tree.
+        \return A boolean that is true if it was found, false otherwise.
+    */
+    bool searchValue(int value);
 
 
     /**
@@ -127,12 +135,12 @@ public:
 
 };
 
-TreeNode * BPTree::searchNode(int value)
+
+bool BPTree::searchValue(int value)
 {
     if(!root)
     {
-        found=false;
-        return (NULL);
+        return false;
     }
 
     TreeNode *temp;
@@ -157,14 +165,52 @@ TreeNode * BPTree::searchNode(int value)
     {
         if(value==temp->data[i]->value)
         {
-            found=true;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+TreeNode * BPTree::searchNode(int value)
+{
+    if(!root)
+    {
+        found=false;
+        return (NULL);
+    }
+
+    TreeNode *temp;
+    temp = root;
+    int i;
+    while(!temp->isLeaf)
+    {
+        i=0;
+        for(; i<temp->data.size();i++)
+        {
+            if(value < temp->data[i]->value)break;
+            if(value == temp->data[i]->value)
+            {
+                i++;
+                break;
+            }
+        }
+        temp = temp->children[i];
+    }
+
+    for(i=0; i<temp->data.size();i++)
+    {
+        if(value == temp->data[i]->value)
+        {
+            found = true;
             return(temp);
         }
     }
 
-    found= false;
+    found = false;
     return(temp);
 }
+
 
 //******************************************************************
 
@@ -175,7 +221,7 @@ void BPTree::add(int value)
 
     Node *aux;
     aux= (Node*)malloc(sizeof(Node));
-    aux->value=value;
+    aux->value = value;
 
     if(!root)
     {
@@ -190,21 +236,23 @@ void BPTree::add(int value)
     int i;
     for(i=0; i<temp->data.size();i++)
     {
-        if(value<temp->data[i]->value) break;
+        if(value < temp->data[i]->value) break;
     }
     temp->data.insert(temp->data.begin()+i, aux);
 
-    while(temp->data.size()==2*degree+1)
+    while(temp->data.size() == 2*degree+1)
     {
        if(temp==root) splitRoot(temp);
        else split(temp);
-       temp=temp->parent;
+       temp = temp->parent;
        if(!temp) break;
     }
 
 }
 
+
 //***************************************************************
+
 void BPTree::splitRoot(TreeNode *tNode)
 {
     TreeNode *temp;
@@ -278,6 +326,7 @@ void BPTree::splitRoot(TreeNode *tNode)
     }
 }
 
+
 //*********************************************************************************************************
 
 void BPTree::split(TreeNode *tNode)
@@ -312,13 +361,13 @@ void BPTree::split(TreeNode *tNode)
         int i;
         for(i=0; i<temp->parent->data.size();i++)
         {
-            if(newNode->value<temp->parent->data[i]->value) break;
+            if(newNode->value < temp->parent->data[i]->value) break;
         }
         temp->parent->data.insert(temp->parent->data.begin()+i, newNode);
         temp->parent->children.insert(temp->parent->children.begin()+i+1, auxR);
 
 
-        auxR->parent=temp->parent;
+        auxR->parent = temp->parent;
 
         auxR->isLeaf=true;
     }
@@ -343,15 +392,14 @@ void BPTree::split(TreeNode *tNode)
         {
             temp->data.pop_back();//delete the n elements that are copied in auxR
             temp->children.pop_back(); //deletes n children copied in auxR
-            auxR->children[j]->parent=auxR;
+            auxR->children[j]->parent = auxR;
         }
 
         int i;
         for(i=0; i<temp->parent->data.size();i++)
         {
-            if(newNode->value<temp->parent->data[i]->value) break;
+            if(newNode->value < temp->parent->data[i]->value) break;
         }
-
 
         temp->parent->data.insert(temp->parent->data.begin()+i, newNode);
         temp->parent->children.insert(temp->parent->children.begin()+i+1, auxR);
@@ -375,15 +423,15 @@ void BPTree::deleteValue(int value)
     }
 
     int i;
-    for(i=0; i<temp->data.size();i++)
+    for(i=0; i < temp->data.size();i++)
     {
-        if(value==temp->data[i]->value)break;
+        if(value == temp->data[i]->value)break;
     }
     temp->data.erase(temp->data.begin()+i);
 
 
     bool couldBorrow; //aux variable for the while
-    couldBorrow=false;
+    couldBorrow = false;
     while(!couldBorrow && (temp->data.size()<degree))
     {
         couldBorrow = borrow(temp);
@@ -393,7 +441,7 @@ void BPTree::deleteValue(int value)
         }//call merge
 
         if (temp==root || temp->parent==root) return;
-        temp=temp->parent;
+        temp = temp->parent;
     }
     return;
 }
@@ -410,7 +458,7 @@ bool BPTree::borrow(TreeNode *tNode) //tNode is the child that need to borrow
 
     if(temp->parent->children[indexChildren]->data[0]->value==temp->data[0]->value) // last right children
     {
-       if(temp->parent->children[indexChildren-1]->data.size()<=degree) return false; //check if the node that will borrow has n+1 elements, if not return false to merge
+       if(temp->parent->children[indexChildren-1]->data.size() <= degree) return false; //check if the node that will borrow has n+1 elements, if not return false to merge
        if(temp->isLeaf)
        {
            temp->data.insert(temp->data.begin(), temp->parent->children[indexChildren-1]->data.back());
@@ -431,7 +479,7 @@ bool BPTree::borrow(TreeNode *tNode) //tNode is the child that need to borrow
            temp->children[0]->parent=temp;
        }
     }
-    else if(temp->parent->children.front()==temp)//first left children
+    else if(temp->parent->children.front() == temp)//first left children
     {
         if(temp->parent->children[1]->data.size()<=degree) return false; //check if the node that will borrow (second children of parent) has n+1 elements, if not return false to merge
         if(temp->isLeaf)
@@ -793,6 +841,7 @@ void BPTree::deleteFromFile( const char * filename )
 }
 
 //************************************************************************
+
 void BPTree::saveToFile ( const char * filename)
 {
    queue<TreeNode> levels;
